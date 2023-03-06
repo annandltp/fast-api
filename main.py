@@ -41,6 +41,11 @@ class CreateUserResponse(BaseModel):
     user_id: int
 
 
+class UserProfileInfo(BaseModel):
+    short_description: str
+    long_bio: str
+
+
 profile_infos = {
     0: {
         "short_description": "My Bio Description",
@@ -89,6 +94,14 @@ def get_all_users_with_pagination(start: int, limit: int) -> (list[FullUserProfi
 
 
 def create_update_user(full_profile_info: FullUserProfile, new_user_id: Optional[int] = None) -> int:
+    """
+    Create user and unique user id if not exist otherwise update the user,
+    Placeholder implementation later to be updated with DB.
+
+    :param full_profile_info: FullUserProfile - User Information saved in dateabase
+    :param new_user_id: Optional[int] - user_id if already exists
+    :return:
+    """
     global profile_infos
     global users_content
 
@@ -116,12 +129,25 @@ def create_update_user(full_profile_info: FullUserProfile, new_user_id: Optional
 
     return new_user_id
 
+
 def delete_user(user_id: int) -> None:
     global profile_infos
     global users_content
 
     del profile_infos[user_id]
     del users_content[user_id]
+
+
+def partial_update_user(user_id: int, user_profile_info: UserProfileInfo) -> None:
+    global profile_infos
+
+    short_description = user_profile_info.short_description
+    long_bio = user_profile_info.long_bio
+    profile_infos[user_id] = {
+        "short_description": short_description,
+        "long_bio": long_bio
+    }
+
 
 # ++++++++++++++++++++++++++++++++++++++++++++++ ROUTE ++++++++++++++++++++++++++++++++++++++++++++++
 @app.get("/user/me", response_model=FullUserProfile)
@@ -133,6 +159,11 @@ def test_endpoint():
 
 @app.get("/user/{user_id}", response_model=FullUserProfile)
 def get_user_by_id(user_id: int):
+    """
+
+    :param user_id:
+    :return: FullUserProfile
+    """
     full_user_profile = get_user_info(user_id)
 
     return full_user_profile
@@ -143,10 +174,12 @@ def update_user(user_id: int, full_profile_info: FullUserProfile):
     create_update_user(full_profile_info, user_id)
     return None
 
+
 @app.delete("/user/{user_id}")
 def remove_user(user_id: int):
     delete_user(user_id)
     return None
+
 
 @app.get("/users", response_model=MultipleUserResponse)
 def get_all_users_paginated(start: int = 0, limit: int = 2):
@@ -159,5 +192,15 @@ def get_all_users_paginated(start: int = 0, limit: int = 2):
 @app.post("/users", response_model=CreateUserResponse)
 def add_user(full_profile_info: FullUserProfile):
     user_id = create_update_user(full_profile_info)
+    print("doc string of create_update_user:\n", create_update_user.__doc__)
     created_user = CreateUserResponse(user_id=user_id)
     return created_user
+
+
+@app.patch("/user/{user_id}", response_model=FullUserProfile)
+def patch_user(user_id: int, user_profile_info: UserProfileInfo) -> FullUserProfile:
+    if user_id in profile_infos:
+        pass
+
+    partial_update_user(user_id, user_profile_info)
+    return get_user_info(user_id)
