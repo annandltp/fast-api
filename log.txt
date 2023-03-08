@@ -1,0 +1,25 @@
+ERROR 
+ERROR 
+ERROR  app.routes.user 
+ERROR  app.routes.user 
+ERROR  app.routes.user 2023-03-07 11:10:39.184 Non-Exist user_id: 1 was requested
+ERROR  app.exception_handlers 2023-03-07 11:28:20.655 Non-existent user_id: 1 was requested
+ERROR  app.exception_handlers 2023-03-07 11:28:22.287 Non-existent user_id: 1 was requested
+ERROR  app.exception_handlers 2023-03-07 11:28:28.587 Non-existent user_id: 2 was requested
+ERROR  app.exception_handlers 2023-03-07 13:01:38.339 Non-existent user_id: 2 was requested
+ERROR  app.exception_handlers 2023-03-07 20:15:37.460 Non-existent user_id: 0 was requested
+ERROR  app.exception_handlers 2023-03-07 20:16:11.345 Non-existent user_id: 0 was requested
+ERROR  app.exception_handlers 2023-03-07 20:16:25.334 Non-existent user_id: 0 was requested
+ERROR  app.exception_handlers 2023-03-07 20:16:51.513 Non-existent user_id: 0 was requested
+ERROR  app.exception_handlers 2023-03-07 20:17:05.527 Non-existent user_id: 10 was requested
+ERROR  app.exception_handlers 2023-03-07 20:17:26.509 Non-existent user_id: 10 was requested
+ERROR  app.exception_handlers 2023-03-07 20:17:38.767 Non-existent user_id: 10 was requested
+ERROR  app.exception_handlers 2023-03-07 20:18:20.347 Non-existent user_id: 10 was requested
+ERROR  app.exception_handlers 2023-03-07 20:18:35.221 Non-existent user_id: 10 was requested
+ERROR  app.exception_handlers 2023-03-07 20:19:18.028 Non-existent user_id: 10 was requested
+ERROR  app.exception_handlers 2023-03-07 20:19:40.013 Non-existent user_id: 0 was requested
+ERROR  app.exception_handlers 2023-03-07 20:19:47.715 Non-existent user_id: 0 was requested
+ERROR  app.exception_handlers 2023-03-07 20:20:01.056 Non-existent user_id: 0 was requested
+ERROR  app.exception_handlers 2023-03-07 20:24:47.549 Non-existent user_id: 1 was requested
+ERROR  app.exception_handlers 2023-03-07 20:34:48.294 Non-existent user_id: 0 was requested
+ERROR  app.exception_handlers 2023-03-07 20:34:48.406 Non-existent user_id: 1 was requested
